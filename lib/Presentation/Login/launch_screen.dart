@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
-import 'package:myapp/Presentation/login_scree.dart';
 
 class LaunchScreen extends StatelessWidget {
-  const LaunchScreen({super.key});
+  final securedStorage = FlutterSecureStorage();
+
+  LaunchScreen({super.key});
+
+  Future<void> _chekingToken(BuildContext context) async {
+    final userJson = await securedStorage.read(key: '_user');
+    if (userJson != null) {
+      GoRouter.of(context).go('/home');
+    } else {
+      GoRouter.of(context).go('/login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +23,7 @@ class LaunchScreen extends StatelessWidget {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 0),
             child: Column(
               children: [
                 Stack(
@@ -25,7 +36,7 @@ class LaunchScreen extends StatelessWidget {
                     ),
                     Positioned(
                       top: 90,
-                      left: (MediaQuery.of(context).size.width / 2) - 80,
+                      left: (MediaQuery.of(context).size.width / 2) - 60,
                       child: ClipOval(
                         child: Image.asset(
                           'assets/images/icon_dev.png',
@@ -50,15 +61,7 @@ class LaunchScreen extends StatelessWidget {
                     width: 350,
                     height: 45,
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(
-                        //     builder: (context) => LoginScreen(),
-                        //   ),
-                        // );
-                        GoRouter.of(context).go('/login');
-                      },
+                      onPressed: () => _chekingToken(context),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color.fromARGB(
                           255,

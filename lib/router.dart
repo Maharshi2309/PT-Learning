@@ -19,5 +19,5 @@ final router = GoRouter(
       ],
     ),
   ],
-  // redirect: (_,__) => '/launch',
+  //redirect: (_, __) => '/launch',
 );

@@ -17,17 +17,20 @@ class AuthService {
   Future<Result<User>> login({
     required String bkmsId,
     required String email,
-    required String password,
+    required String password, 
+    required bool rememberMe,
   }) async {
     final repo = AuthRepo(Dio()..interceptors.add(CurlInterceptor()));
     try {
       final user = await repo.login(
         LoginRequest(bkmsId: bkmsId, email: email, password: password),
       );
-      await securedStorage.write(
+      if (rememberMe) {
+        await securedStorage.write(
         key: userKey,
         value: jsonEncode(user.toJson()),
       );
+      }
 
       return Result.value(user);
     } catch (e) {
@@ -38,5 +41,15 @@ class AuthService {
       }
       return Result.error('Something went Wrong');
     }
+  }
+
+  Future<Result<User>> rememberMe() async {
+    final data = await securedStorage.read(key: userKey);
+    if (data != null) {
+      final user = User.fromJson(jsonDecode(data));
+      return Result.value(user);
+    }
+    
+    return Result.error('User Not Found');
   }
 }

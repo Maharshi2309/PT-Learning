@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/Presentation/login_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,6 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    context.read<LoginBloc>().add(const rememberMe());
 
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
@@ -36,3 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
+
+
+// 359bkms@mailinator.com
+// Bkms@123456
