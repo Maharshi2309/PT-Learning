@@ -17,7 +17,7 @@ class AuthService {
   Future<Result<User>> login({
     required String bkmsId,
     required String email,
-    required String password, 
+    required String password,
     required bool rememberMe,
   }) async {
     final repo = AuthRepo(Dio()..interceptors.add(CurlInterceptor()));
@@ -27,9 +27,9 @@ class AuthService {
       );
       if (rememberMe) {
         await securedStorage.write(
-        key: userKey,
-        value: jsonEncode(user.toJson()),
-      );
+          key: userKey,
+          value: jsonEncode(user.toJson()),
+        );
       }
 
       return Result.value(user);
@@ -49,7 +49,12 @@ class AuthService {
       final user = User.fromJson(jsonDecode(data));
       return Result.value(user);
     }
-    
+
     return Result.error('User Not Found');
+  }
+
+  Future logOut() async {
+    await securedStorage.delete(key: userKey);
+    return null;
   }
 }

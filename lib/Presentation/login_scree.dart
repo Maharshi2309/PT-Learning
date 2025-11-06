@@ -22,10 +22,10 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener<LoginBloc, LoginState>(
       listener: (context, state) {
-        if (state.loginStatus == LoginStatus.loggedin) {
+        if (state.status == Status.done || state.loginStatus == LoginStatus.loggedin) {
           GoRouter.of(context).go('/home');
         }
-        if (state.status == Status.error) {
+        else if (state.status == Status.error) {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text(state.message)));

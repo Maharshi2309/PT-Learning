@@ -16,6 +16,10 @@ enum Status { init, process, done, error }
 
 enum LoginStatus { loggedin, loggedOut, checking }
 
+class logOutEvent extends LoginEvent {
+  const logOutEvent();
+}
+
 class rememberMe extends LoginEvent {
   const rememberMe();
 }
@@ -78,14 +82,32 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       if (response.isError) {
         emit(
           state.copyWith(
-            message: (response.asError?.error ?? '') as String,
+            message: (response.asError?.error ?? 'Unknown Error') as String,
             status: Status.error,
           ),
         );
         return;
       }
-      emit(state.copyWith(status: Status.done, message: 'Login Success'));
+      final user = response.asValue!.value;
+      emit(state.copyWith(user: user,
+      status: Status.done, 
+      message: 'Login Success',
+      ),
+    );
       return;
     });
+
+    on<logOutEvent>((event, emit) async {
+      await service.logOut();
+      emit(
+        state.copyWith(
+          loginStatus: LoginStatus.loggedOut,
+          status: Status.init,
+          user: null,
+        ),
+      );
+    });
+
+    add(rememberMe());
   }
 }
