@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:myapp/Presentation/Forgot%20Password/forgor_pass_bloc.dart';
 import 'package:myapp/Presentation/Login/launch_screen.dart';
 import 'package:myapp/Presentation/login_bloc.dart';
 import 'package:myapp/config.dart';
@@ -19,6 +20,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(create: (_) => GetIt.I<LoginBloc>()),
+        BlocProvider<ForgorPassBloc>(create: (_) => GetIt.I<ForgorPassBloc>()),
       ],
       child: MaterialApp.router(
         title: 'Flutter Demo',

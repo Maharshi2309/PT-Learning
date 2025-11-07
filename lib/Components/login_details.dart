@@ -5,6 +5,8 @@ class LoginDetails extends StatelessWidget {
   final TextEditingController controller;
   final bool obscureText;
   final Widget? suffixIcon;
+  final Function? validator;
+  final AutovalidateMode autovalidateMode;
 
   const LoginDetails({
     super.key,
@@ -12,6 +14,8 @@ class LoginDetails extends StatelessWidget {
     required this.controller,
     this.obscureText = false,
     this.suffixIcon,
+    this.validator,
+    this.autovalidateMode = AutovalidateMode.onUserInteraction,
   });
 
   @override
@@ -25,25 +29,30 @@ class LoginDetails extends StatelessWidget {
               Expanded(
                 child: Text(
                   title,
-                  style: const TextStyle(fontSize: 15),
+                  style: const TextStyle(fontSize: 14),
                   textAlign: TextAlign.left,
                 ),
               ),
               Expanded(
                 child: SizedBox(
-                  height: 38, // force consistent height
-                  child: TextField(
-                    controller: controller,
-                    obscureText: obscureText,
-                    style: const TextStyle(fontSize: 15),
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      isDense: true,
-                      border: InputBorder.none,
-                      suffixIcon: suffixIcon,
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                      ), // Try 8 or adjust as needed
+                  height: 30, // force consistent height
+                  child: Center(
+                    child: TextFormField(
+                      controller: controller,
+                      autovalidateMode: autovalidateMode,
+                      validator: validator as String? Function(String?)?,
+                      obscureText: obscureText,
+                      style: const TextStyle(fontSize: 13),
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                        errorStyle: TextStyle(height: 1.2),
+                        isDense: true,
+                        border: InputBorder.none,
+                        suffixIcon: suffixIcon,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 8,
+                        ), // Try 8 or adjust as needed
+                      ),
                     ),
                   ),
                 ),

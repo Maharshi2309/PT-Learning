@@ -12,7 +12,20 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: Text('HomeScren')),
-      body: Center(child: Text("Access Token: ${user?.data['access_token'] ?? 'No Token'}")),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Text(
+              "Access Token: ${user?.data['access_token'] ?? 'No Token'}",
+            ),
+          ),
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.power_settings_new),
         onPressed: () {
