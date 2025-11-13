@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:myapp/Model/forgotPass_data.dart';
+import 'package:myapp/Model/Forgot%20Pass/forgotPass_data.dart';
 import 'package:myapp/Service/forgotPass_service.dart';
 
 part 'forgor_pass_bloc.freezed.dart';

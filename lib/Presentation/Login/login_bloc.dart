@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:myapp/Model/user.dart';
+import 'package:myapp/Model/Login/user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:myapp/Service/auth_service.dart';
 import 'package:injectable/injectable.dart';

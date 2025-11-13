@@ -1,8 +1,9 @@
 import 'package:go_router/go_router.dart';
 import 'package:myapp/Presentation/Forgot%20Password/forgot_pass_screen.dart';
 import 'package:myapp/Presentation/Home/home_screen.dart';
-import 'package:myapp/Presentation/Login/launch_screen.dart';
-import 'package:myapp/Presentation/login_scree.dart';
+import 'package:myapp/Presentation/Launch%20Screen/launch_screen.dart';
+import 'package:myapp/Presentation/Login/login_scree.dart';
+import 'package:myapp/Presentation/Reset%20Paasword/reserPass_Screen.dart';
 
 final router = GoRouter(
   routes: [
@@ -17,6 +18,7 @@ final router = GoRouter(
 
         GoRoute(path: 'home', builder: (_, __) => HomeScreen()),
         GoRoute(path: 'forgorpass', builder: (_, __) => ForgotPassScreen()),
+        GoRoute(path: 'resetpass', builder: (_,__) => ReserpassScreen()),
       ],
     ),
   ],

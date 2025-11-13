@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:myapp/Model/forgotPass_data.dart';
-import 'package:myapp/Model/forgot_pass.dart';
+import 'package:myapp/Model/Forgot%20Pass/forgotPass_data.dart';
+import 'package:myapp/Model/Forgot%20Pass/forgot_pass.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'forgotpass_repo.g.dart';

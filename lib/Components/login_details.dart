@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoginDetails extends StatelessWidget {
+class TextFieldDetails extends StatelessWidget {
   final String title;
   final TextEditingController controller;
   final bool obscureText;
@@ -8,7 +8,7 @@ class LoginDetails extends StatelessWidget {
   final Function? validator;
   final AutovalidateMode autovalidateMode;
 
-  const LoginDetails({
+  const TextFieldDetails({
     super.key,
     required this.title,
     required this.controller,
@@ -35,7 +35,7 @@ class LoginDetails extends StatelessWidget {
               ),
               Expanded(
                 child: SizedBox(
-                  height: 30, // force consistent height
+                  height: 30, 
                   child: Center(
                     child: TextFormField(
                       controller: controller,
@@ -51,7 +51,7 @@ class LoginDetails extends StatelessWidget {
                         suffixIcon: suffixIcon,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 8,
-                        ), // Try 8 or adjust as needed
+                        ),
                       ),
                     ),
                   ),

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:myapp/Model/login.dart';
-import 'package:myapp/Model/user.dart';
+import 'package:myapp/Model/Login/login.dart';
+import 'package:myapp/Model/Login/user.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'auth_repo.g.dart';

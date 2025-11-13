@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/Components/login_details.dart';
-import 'package:myapp/Presentation/login_bloc.dart';
+import 'package:myapp/Presentation/Login/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           endIndent: 30,
                         ),
                       ),
-                      LoginDetails(
+                      TextFieldDetails(
                         title: 'BKMS ID',
                         controller: bkmsidController,
                         validator: (value) {
@@ -94,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-                      LoginDetails(
+                      TextFieldDetails(
                         title: 'Email ',
                         controller: mailController,
                         validator: (value) {
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }
                         },
                       ),
-                      LoginDetails(
+                      TextFieldDetails(
                         title: 'Password ',
                         controller: passcontroller,
                         validator: (value) {

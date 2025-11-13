@@ -19,6 +19,7 @@ class LaunchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           color: Colors.white,

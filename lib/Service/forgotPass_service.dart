@@ -2,8 +2,8 @@ import 'package:async/async.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_curl_interceptor/dio_curl_interceptor.dart';
 import 'package:injectable/injectable.dart';
-import 'package:myapp/Model/forgotPass_data.dart';
-import 'package:myapp/Model/forgot_pass.dart';
+import 'package:myapp/Model/Forgot%20Pass/forgotPass_data.dart';
+import 'package:myapp/Model/Forgot%20Pass/forgot_pass.dart';
 import 'package:myapp/Repository/forgotpass_repo.dart';
 
 @singleton

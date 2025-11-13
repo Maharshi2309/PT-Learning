@@ -22,9 +22,9 @@ class User {
 @JsonSerializable()
 class UserData {
   @JsonKey(defaultValue: 'access_token')
-  final String accessToken;
+  final String token;
 
-  const UserData({required this.accessToken});
+  const UserData({required this.token});
 
   factory UserData.fromJson(Map<String, dynamic> json) =>
       _$UserDataFromJson(json);
