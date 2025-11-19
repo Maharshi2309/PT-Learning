@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ResetPassState {
 
- Status get status; String get message; ResetpassData? get resetpassData;
+ ResetStatus get status; String get message; ResetpassData? get resetpassData;
 /// Create a copy of ResetPassState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $ResetPassStateCopyWith<$Res>  {
   factory $ResetPassStateCopyWith(ResetPassState value, $Res Function(ResetPassState) _then) = _$ResetPassStateCopyWithImpl;
 @useResult
 $Res call({
- Status status, String message, ResetpassData? resetpassData
+ ResetStatus status, String message, ResetpassData? resetpassData
 });
 
 
@@ -65,7 +65,7 @@ class _$ResetPassStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = null,Object? resetpassData = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as ResetStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,resetpassData: freezed == resetpassData ? _self.resetpassData : resetpassData // ignore: cast_nullable_to_non_nullable
 as ResetpassData?,
   ));
@@ -152,7 +152,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status status,  String message,  ResetpassData? resetpassData)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ResetStatus status,  String message,  ResetpassData? resetpassData)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ResetPassState() when $default != null:
 return $default(_that.status,_that.message,_that.resetpassData);case _:
@@ -173,7 +173,7 @@ return $default(_that.status,_that.message,_that.resetpassData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status status,  String message,  ResetpassData? resetpassData)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ResetStatus status,  String message,  ResetpassData? resetpassData)  $default,) {final _that = this;
 switch (_that) {
 case _ResetPassState():
 return $default(_that.status,_that.message,_that.resetpassData);case _:
@@ -193,7 +193,7 @@ return $default(_that.status,_that.message,_that.resetpassData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status status,  String message,  ResetpassData? resetpassData)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ResetStatus status,  String message,  ResetpassData? resetpassData)?  $default,) {final _that = this;
 switch (_that) {
 case _ResetPassState() when $default != null:
 return $default(_that.status,_that.message,_that.resetpassData);case _:
@@ -208,10 +208,10 @@ return $default(_that.status,_that.message,_that.resetpassData);case _:
 
 
 class _ResetPassState implements ResetPassState {
-  const _ResetPassState({this.status = Status.init, this.message = '', this.resetpassData});
+  const _ResetPassState({this.status = ResetStatus.initReset, this.message = '', this.resetpassData});
   
 
-@override@JsonKey() final  Status status;
+@override@JsonKey() final  ResetStatus status;
 @override@JsonKey() final  String message;
 @override final  ResetpassData? resetpassData;
 
@@ -245,7 +245,7 @@ abstract mixin class _$ResetPassStateCopyWith<$Res> implements $ResetPassStateCo
   factory _$ResetPassStateCopyWith(_ResetPassState value, $Res Function(_ResetPassState) _then) = __$ResetPassStateCopyWithImpl;
 @override @useResult
 $Res call({
- Status status, String message, ResetpassData? resetpassData
+ ResetStatus status, String message, ResetpassData? resetpassData
 });
 
 
@@ -265,7 +265,7 @@ class __$ResetPassStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = null,Object? resetpassData = freezed,}) {
   return _then(_ResetPassState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as ResetStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,resetpassData: freezed == resetpassData ? _self.resetpassData : resetpassData // ignore: cast_nullable_to_non_nullable
 as ResetpassData?,
   ));

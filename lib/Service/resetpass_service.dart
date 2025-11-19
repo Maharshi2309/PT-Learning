@@ -7,20 +7,26 @@ import 'package:myapp/Model/Reset%20Pass/resetpass_request.dart';
 import 'package:myapp/Repository/resetpass_repo.dart';
 
 @singleton
-class ReserpassService {
+class ResetpassService {
   Future<Result<ResetpassData>> resetPass({
     required String password,
     required String confirmPassword,
     required String token,
-    required int bkmsId,
+    required int? bkmsId,
+    required bool? isChild,
   }) async {
     final repo = ResetpassRepo(Dio()..interceptors.add(CurlInterceptor()));
     try {
       final requestData = await repo.resetPass(
-        ResetpassRequest(password: password, confirmPassword: confirmPassword,token: token,
+        ResetpassRequest(
+          password: password,
+          confirmPassword: confirmPassword,
+          token: token,
           bkmsId: bkmsId,
-          ),
+          isChild: isChild,
+        ),
       );
+
       return Result.value(requestData);
     } catch (e) {
       if (e is DioException) {

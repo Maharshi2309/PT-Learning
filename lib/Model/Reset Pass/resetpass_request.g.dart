@@ -11,7 +11,8 @@ ResetpassRequest _$ResetpassRequestFromJson(Map<String, dynamic> json) =>
       password: json['password'] as String,
       confirmPassword: json['confirm_password'] as String,
       token: json['token'] as String,
-      bkmsId: (json['bkms_id'] as num).toInt(),
+      bkmsId: (json['bkms_id'] as num?)?.toInt(),
+      isChild: json['is_child'] as bool?,
     );
 
 Map<String, dynamic> _$ResetpassRequestToJson(ResetpassRequest instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$ResetpassRequestToJson(ResetpassRequest instance) =>
       'confirm_password': instance.confirmPassword,
       'token': instance.token,
       'bkms_id': instance.bkmsId,
+      'is_child': instance.isChild,
     };

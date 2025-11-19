@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>bk-qa.baps.dev</string>
+    <string>applinks:bk-qa.baps.dev</string>
 	</array>
 </dict>
 </plist>

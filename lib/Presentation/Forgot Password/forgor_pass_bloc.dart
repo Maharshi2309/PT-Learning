@@ -11,7 +11,7 @@ sealed class ForgorPassEvent {
   const ForgorPassEvent();
 }
 
-enum Status { init, process, done, error }
+enum ForgotStatus { initForgot, processForgot, doneForgot, errorForgot }
 
 class ForgotPassRequestEvent extends ForgorPassEvent {
   final String bkmsId;
@@ -24,7 +24,7 @@ class ForgotPassRequestEvent extends ForgorPassEvent {
 @freezed
 abstract class ForgotPassState with _$ForgotPassState {
   const factory ForgotPassState({
-    @Default(Status.init) Status status,
+    @Default(ForgotStatus.initForgot) ForgotStatus status,
     @Default('') String message,
     ForgotpassData? forgotpassData,
   }) = _ForgotPassState;
@@ -36,9 +36,9 @@ class ForgorPassBloc extends Bloc<ForgorPassEvent, ForgotPassState> {
   final ForgotpassService service;
 
   ForgorPassBloc(this.service)
-    : super(ForgotPassState(status: Status.init, message: '')) {
+    : super(ForgotPassState(status: ForgotStatus.initForgot, message: '')) {
     on<ForgotPassRequestEvent>((event, emit) async {
-      emit(state.copyWith(status: Status.process));
+      emit(state.copyWith(status: ForgotStatus.processForgot));
 
       final resp = await service.forgorPass(
         bkmsId: event.bkmsId,
@@ -48,15 +48,18 @@ class ForgorPassBloc extends Bloc<ForgorPassEvent, ForgotPassState> {
       if (resp.isError) {
         emit(
           state.copyWith(
-            message: (resp.asError?.error ?? '') as String,
-            status: Status.error,
+            message: (resp.asError?.error ?? '')?.toString() ?? '',
+            status: ForgotStatus.errorForgot,
           ),
         );
         return;
       }
 
       emit(
-        state.copyWith(status: Status.done, message: 'Mail Sent Successfully'),
+        state.copyWith(
+          status: ForgotStatus.doneForgot,
+          message: 'Mail Sent Successfully',
+        ),
       );
       return;
     });

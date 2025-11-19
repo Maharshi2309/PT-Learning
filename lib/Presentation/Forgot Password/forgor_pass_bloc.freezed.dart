@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ForgotPassState {
 
- Status get status; String get message; ForgotpassData? get forgotpassData;
+ ForgotStatus get status; String get message; ForgotpassData? get forgotpassData;
 /// Create a copy of ForgotPassState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,7 +45,7 @@ abstract mixin class $ForgotPassStateCopyWith<$Res>  {
   factory $ForgotPassStateCopyWith(ForgotPassState value, $Res Function(ForgotPassState) _then) = _$ForgotPassStateCopyWithImpl;
 @useResult
 $Res call({
- Status status, String message, ForgotpassData? forgotpassData
+ ForgotStatus status, String message, ForgotpassData? forgotpassData
 });
 
 
@@ -65,7 +65,7 @@ class _$ForgotPassStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? status = null,Object? message = null,Object? forgotpassData = freezed,}) {
   return _then(_self.copyWith(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as ForgotStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,forgotpassData: freezed == forgotpassData ? _self.forgotpassData : forgotpassData // ignore: cast_nullable_to_non_nullable
 as ForgotpassData?,
   ));
@@ -152,7 +152,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status status,  String message,  ForgotpassData? forgotpassData)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( ForgotStatus status,  String message,  ForgotpassData? forgotpassData)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ForgotPassState() when $default != null:
 return $default(_that.status,_that.message,_that.forgotpassData);case _:
@@ -173,7 +173,7 @@ return $default(_that.status,_that.message,_that.forgotpassData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status status,  String message,  ForgotpassData? forgotpassData)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( ForgotStatus status,  String message,  ForgotpassData? forgotpassData)  $default,) {final _that = this;
 switch (_that) {
 case _ForgotPassState():
 return $default(_that.status,_that.message,_that.forgotpassData);case _:
@@ -193,7 +193,7 @@ return $default(_that.status,_that.message,_that.forgotpassData);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status status,  String message,  ForgotpassData? forgotpassData)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( ForgotStatus status,  String message,  ForgotpassData? forgotpassData)?  $default,) {final _that = this;
 switch (_that) {
 case _ForgotPassState() when $default != null:
 return $default(_that.status,_that.message,_that.forgotpassData);case _:
@@ -208,10 +208,10 @@ return $default(_that.status,_that.message,_that.forgotpassData);case _:
 
 
 class _ForgotPassState implements ForgotPassState {
-  const _ForgotPassState({this.status = Status.init, this.message = '', this.forgotpassData});
+  const _ForgotPassState({this.status = ForgotStatus.initForgot, this.message = '', this.forgotpassData});
   
 
-@override@JsonKey() final  Status status;
+@override@JsonKey() final  ForgotStatus status;
 @override@JsonKey() final  String message;
 @override final  ForgotpassData? forgotpassData;
 
@@ -245,7 +245,7 @@ abstract mixin class _$ForgotPassStateCopyWith<$Res> implements $ForgotPassState
   factory _$ForgotPassStateCopyWith(_ForgotPassState value, $Res Function(_ForgotPassState) _then) = __$ForgotPassStateCopyWithImpl;
 @override @useResult
 $Res call({
- Status status, String message, ForgotpassData? forgotpassData
+ ForgotStatus status, String message, ForgotpassData? forgotpassData
 });
 
 
@@ -265,7 +265,7 @@ class __$ForgotPassStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? status = null,Object? message = null,Object? forgotpassData = freezed,}) {
   return _then(_ForgotPassState(
 status: null == status ? _self.status : status // ignore: cast_nullable_to_non_nullable
-as Status,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
+as ForgotStatus,message: null == message ? _self.message : message // ignore: cast_nullable_to_non_nullable
 as String,forgotpassData: freezed == forgotpassData ? _self.forgotpassData : forgotpassData // ignore: cast_nullable_to_non_nullable
 as ForgotpassData?,
   ));

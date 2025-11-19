@@ -7,10 +7,16 @@ part 'forgotPass_data.g.dart';
 class ForgotpassData {
   final int status;
   final bool success;
+  final Map<String, dynamic> data;
 
-  const ForgotpassData({required this.status, required this.success});
+  const ForgotpassData({
+    required this.status,
+    required this.success,
+    required this.data,
+  });
 
-
-  factory ForgotpassData.fromJson(Map<String, dynamic> json) => _$ForgotpassDataFromJson(json);
+  factory ForgotpassData.fromJson(Map<String, dynamic> json) =>
+      _$ForgotpassDataFromJson(json);
   Map<String, dynamic> toJson() => _$ForgotpassDataToJson(this);
 }
+
