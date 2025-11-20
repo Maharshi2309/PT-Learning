@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/Components/page_top_layout.dart';
 import 'package:myapp/Components/resetPass_details.dart';
 import 'package:myapp/Presentation/Reset%20Paasword/resetPass_bloc.dart';
 
@@ -64,28 +65,7 @@ class _ResetpassScreenState extends State<ResetpassScreen> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      Stack(
-                        children: [
-                          Image.asset(
-                            'assets/images/patto.png',
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.fitWidth,
-                            height: 300,
-                          ),
-                          Positioned(
-                            top: 90,
-                            left: (MediaQuery.of(context).size.width / 2) - 60,
-                            child: ClipOval(
-                              child: Image.asset(
-                                'assets/images/icon_dev.png',
-                                fit: BoxFit.cover,
-                                height: 130,
-                                width: 130,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      PageTopLayout(),
                       Padding(
                         padding: const EdgeInsets.only(right: 90),
                         child: Text(

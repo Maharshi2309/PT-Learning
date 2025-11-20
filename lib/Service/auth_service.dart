@@ -47,6 +47,7 @@ class AuthService {
     final data = await securedStorage.read(key: userKey);
     if (data != null) {
       final user = User.fromJson(jsonDecode(data));
+      
       return Result.value(user);
     }
 

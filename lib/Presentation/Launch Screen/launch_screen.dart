@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/Components/page_top_layout.dart';
 
 class LaunchScreen extends StatelessWidget {
   final securedStorage = FlutterSecureStorage();
@@ -25,28 +26,7 @@ class LaunchScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 0),
           child: Column(
             children: [
-              Stack(
-                children: [
-                  Image.asset(
-                    'assets/images/patto.png',
-                    width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.fitWidth,
-                    height: 300,
-                  ),
-                  Positioned(
-                    top: 90,
-                    left: (MediaQuery.of(context).size.width / 2) - 60,
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/images/icon_dev.png',
-                        fit: BoxFit.cover,
-                        height: 130,
-                        width: 130,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              PageTopLayout(),
               Center(
                 child: Text(
                   'Welcome to the BKMS application',
@@ -60,7 +40,9 @@ class LaunchScreen extends StatelessWidget {
                   width: 350,
                   height: 45,
                   child: ElevatedButton(
-                    onPressed: () => _chekingToken(context),
+                    onPressed: () {
+                      GoRouter.of(context).go('/login');
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 118, 193, 255),
                       shape: RoundedRectangleBorder(

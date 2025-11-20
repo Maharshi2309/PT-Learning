@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:myapp/Components/page_top_layout.dart';
 import 'package:myapp/Presentation/Forgot%20Password/forgor_pass_bloc.dart';
 
 class ForgotPassScreen extends StatelessWidget {
@@ -15,8 +16,7 @@ class ForgotPassScreen extends StatelessWidget {
     return BlocListener<ForgorPassBloc, ForgotPassState>(
       listener: (context, state) {
         if (state.status == ForgotStatus.doneForgot) {
-          GoRouter.of(context).go('/resetpass',
-          );
+          GoRouter.of(context).go('/resetpass');
         }
         if (state.status == ForgotStatus.processForgot) {
           Center(child: CircularProgressIndicator());
@@ -38,29 +38,7 @@ class ForgotPassScreen extends StatelessWidget {
                     key: _formKey,
                     child: Column(
                       children: [
-                        Stack(
-                          children: [
-                            Image.asset(
-                              'assets/images/patto.png',
-                              width: MediaQuery.of(context).size.width,
-                              fit: BoxFit.fitWidth,
-                              height: 300,
-                            ),
-                            Positioned(
-                              top: 90,
-                              left:
-                                  (MediaQuery.of(context).size.width / 2) - 65,
-                              child: ClipOval(
-                                child: Image.asset(
-                                  'assets/images/icon_dev.png',
-                                  fit: BoxFit.cover,
-                                  height: 130,
-                                  width: 130,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        PageTopLayout(),
                         Padding(
                           padding: const EdgeInsets.only(right: 80),
                           child: Text(

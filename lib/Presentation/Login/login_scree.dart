@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:myapp/Components/login_details.dart';
+import 'package:myapp/Components/page_top_layout.dart';
 import 'package:myapp/Presentation/Login/login_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -26,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state.status == Status.done ||
             state.loginStatus == LoginStatus.loggedin) {
-          GoRouter.of(context).go('/home');
+          GoRouter.of(context).go('/pin');
         } else if (state.status == Status.error) {
           ScaffoldMessenger.of(
             context,
@@ -42,28 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    Stack(
-                      children: [
-                        Image.asset(
-                          'assets/images/patto.png',
-                          width: MediaQuery.of(context).size.width,
-                          fit: BoxFit.fitWidth,
-                          height: 300,
-                        ),
-                        Positioned(
-                          top: 90,
-                          left: (MediaQuery.of(context).size.width / 2) - 65,
-                          child: ClipOval(
-                            child: Image.asset(
-                              'assets/images/icon_dev.png',
-                              fit: BoxFit.cover,
-                              height: 130,
-                              width: 130,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    PageTopLayout(),
                     Center(
                       child: Text(
                         'Welcome to the BKMS application',

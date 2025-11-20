@@ -11,7 +11,15 @@ class HomeScreen extends StatelessWidget {
     final user = context.select((LoginBloc bloc) => bloc.state.user);
 
     return Scaffold(
-      appBar: AppBar(title: Text('HomeScren')),
+      appBar: AppBar(
+        title: Text('HomeScren'),
+        leading: IconButton(
+          onPressed: () {
+            GoRouter.of(context).go('/pin');
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
