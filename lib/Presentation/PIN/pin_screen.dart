@@ -4,7 +4,8 @@ import 'package:myapp/Components/page_top_layout.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class PinScreen extends StatefulWidget {
-  const PinScreen({super.key});
+  final String mode;
+  const PinScreen({super.key, required this.mode});
 
   @override
   State<PinScreen> createState() => _PinScreenState();
@@ -31,58 +32,114 @@ class _PinScreenState extends State<PinScreen> {
   ];
   final int totaldots = 4;
 
-  void handleCompletePIN() {
-    final enteredPin = pin.join(); // this converts this list in string.
+  @override
+  void initState() {
+    super.initState();
+    if (widget.mode == 'create') {
+      pageTitle = 'Create PIN';
+    } else {
+      pageTitle = 'Enter PIN';
+    }
+  }
+
+  void handleCompletePIN() async {
+    final enteredPin = pin.join(); // .join() this converts this list in string.
 
     setState(() {
-      if (firstPin == null) {
-        print(
-          '____________First PIN Entered : $enteredPin ______________________',
-        );
-
-        firstPin = enteredPin;
-        pin.clear();
-        pageTitle = 'Re-enter PIN';
+      if (widget.mode == 'create') {
+        handleCreateMode(enteredPin);
       } else {
-        print(
-          '____________________Second PIN Entered : $enteredPin __________________',
-        );
-        print(
-          '____________________Comparing with first PIN : $firstPin __________________',
-        );
-
-        if (enteredPin == firstPin) {
-          print('____________________');
-          print('PIN Matched');
-
-          _savePIN(enteredPin);
-
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('Welcome to BKMS'),
-              backgroundColor: Colors.green,
-              duration: Duration(seconds: 2),
-            ),
-          );
-          GoRouter.of(context).go('/home');
-        } else {
-          print('PIN did not match');
-          print('First PIN was: $firstPin');
-          print('Second PIN was: $enteredPin');
-
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text('PIN is not matching'),
-              backgroundColor: Colors.red,
-            ),
-          );
-
-          firstPin = null;
-          pin.clear();
-          pageTitle = 'Enter PIN';
-        }
+        handleVlidateMode(enteredPin);
       }
     });
+  }
+
+  void handleCreateMode(String enteredPin) {
+    if (firstPin == null) {
+      print('--------------------PIN: $enteredPin');
+
+      firstPin = enteredPin;
+      pin.clear();
+      pageTitle = 'Re-enter PIN';
+    } else {
+      print('--------------------Confirming PIN:::: First PIN: $firstPin');
+      print('--------------------Second PIN: $enteredPin');
+
+      if (enteredPin == firstPin) {
+        print(':::::: PIN Matched ::::::');
+
+        _savePIN(enteredPin);
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('PIN Created Successfully!!!!   '),
+            backgroundColor: Colors.green,
+          ),
+        );
+
+        Future.delayed(Duration(seconds: 1), () {
+          context.go('/home');
+        });
+      } else {
+        print(':::::::  PINs do not match :::::::');
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('PIN do not match. Try again !!!!'),
+            backgroundColor: Colors.red,
+          ),
+        );
+
+        firstPin = null;
+        pin.clear();
+        pageTitle = 'Create PIN';
+      }
+    }
+  }
+
+  void handleVlidateMode(String enteredPin) async {
+    print(':::: Validating PIN --- Entered PIN: $enteredPin');
+
+    final storedPin = await securedStorage.read(key: 'user_pin');
+    print(' ::::: Stored PIN: $storedPin');
+
+    if (storedPin == null) {
+      print(' ::::: ERROR: No Stroed PIN !!!!');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('No PIN Found. Please login'),
+          backgroundColor: Colors.red,
+        ),
+      );
+
+      await securedStorage.delete(key: '_user');
+      context.go('/login');
+      return;
+    }
+
+    if (enteredPin == storedPin) {
+      print('::::: PIN Matched Successfully ::::::');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Welcome to BKMS'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Future.delayed(Duration(milliseconds: 200), () {
+        context.go('/home');
+      });
+    } else {
+      print('::::: Incorrect PIN');
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Incorrect PIN. Try Again'),
+          backgroundColor: Colors.red,
+        ),
+      );
+      pin.clear();
+    }
   }
 
   Future<void> _savePIN(String pinToSave) async {

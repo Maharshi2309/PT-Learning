@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
       listener: (context, state) {
         if (state.status == Status.done ||
             state.loginStatus == LoginStatus.loggedin) {
-          GoRouter.of(context).go('/pin');
+          GoRouter.of(context).go('/pin?mode=create');
         } else if (state.status == Status.error) {
           ScaffoldMessenger.of(
             context,
